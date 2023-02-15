@@ -16,6 +16,7 @@ namespace BlogMvcApp.Controllers
         {
 
             var bloglar = context.Bloglar
+                .Where(i => i.Onay == true && i.Anasayfa == true)
                 .Select(i => new BlogModel()
                 {
                     Id = i.Id,
@@ -25,8 +26,8 @@ namespace BlogMvcApp.Controllers
                     Anasayfa = i.Anasayfa,
                     Onay = i.Onay,
                     Resim = i.Resim
-                })
-                .Where(i => i.Onay == true && i.Anasayfa == true);
+                });
+
 
             return View(bloglar.ToList());
         }
